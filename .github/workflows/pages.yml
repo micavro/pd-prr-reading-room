@@ -1,5 +1,8 @@
 name: Publish selected paper library
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 permissions:
   contents: read
@@ -16,6 +19,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
+      - name: Verify HTML links and PDFs
+        run: python -X utf8 verify_site.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

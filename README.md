@@ -1,6 +1,9 @@
 # P/D 与 PRR 论文阅读室
 
-静态阅读网站：按两组列出论文，直接打开已有中文 PDF，并提供逐篇论文阅读问答。所有路径相对站点根目录，可部署到 GitHub Pages 子路径或 Sites。
+静态阅读网站：按两组列出论文，直接打开已有中文 PDF，并提供逐篇论文阅读问答。网站通过 GitHub Pages 公开发布，Safari 可直接访问，无需登录。
+
+- 阅读网址：https://micavro.github.io/pd-prr-reading-room/
+- GitHub 仓库：https://github.com/micavro/pd-prr-reading-room
 
 ## 生成与验证
 
@@ -16,7 +19,7 @@ python -m http.server 8765 --bind 127.0.0.1 --directory dist
 
 KaTeX 仅在生成阶段把公式转为原生 MathML；浏览器无需加载 JavaScript、外部字体或数学服务。
 
-`content.json` 保存题录、问答和来源。`build_site.py` 只读取其中明确列出的 PDF，复制到 `dist/pdfs/`，生成首页和论文页。不扫描或上传研究工作区。生成产物、预览和打包文件保存在忽略目录中。
+`content.json` 保存题录、问答和来源。`build_site.py` 只读取其中明确列出的 PDF，复制到 `dist/pdfs/`，生成首页和论文页。不扫描或上传研究工作区。`dist/` 保存已提交的发布快照；预览、打包和其他中间文件保存在忽略目录中。
 
 ## 维护
 
@@ -26,9 +29,9 @@ KaTeX 仅在生成阶段把公式转为原生 MathML；浏览器无需加载 Jav
 
 ## GitHub Pages
 
-仓库可只包含此目录的源文件与经选择的 PDF。运行生成和验证后，将 `dist/` 作为 Pages 发布目录。可使用 `.github/workflows/pages.yml` 手动触发部署。不要将整个上级研究工作区加入网站仓库。
+仓库只包含此目录的源文件与经选择的 PDF。修改内容后运行生成和验证，提交更新后的 `dist/` 并推送到 `main`，`.github/workflows/pages.yml` 会自动检查链接和 PDF，然后发布到 GitHub Pages。也可在 Actions 中手动触发部署。不要将整个上级研究工作区加入网站仓库。
 
-工作流采用 [GitHub Pages 官方文档](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) 的静态产物发布方式，需要先在目标仓库启用 Pages / GitHub Actions。当前网站使用 Sites 私人发布，GitHub 工作流不会自动运行。
+工作流采用 [GitHub Pages 官方文档](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) 的静态产物发布方式，仓库的 Pages 发布来源设为 GitHub Actions。HTML、样式和 PDF 均由 GitHub Pages 提供，不依赖其他网站托管服务。
 
 ## 本版收录范围
 
