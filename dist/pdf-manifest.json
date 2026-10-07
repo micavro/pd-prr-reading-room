@@ -1,0 +1,240 @@
+[
+  {
+    "id": "hermes-2025",
+    "pages": 12,
+    "bytes": 1468552,
+    "sha256": "81d2e10ff02e85dcd91a0952e6e1a1a71b863b4ff805daf844ffd98d8e2753d5",
+    "chinese_characters": 11876
+  },
+  {
+    "id": "llmsched-2025",
+    "pages": 9,
+    "bytes": 1817253,
+    "sha256": "fc70ca08844fb60ab8be3d6ca9681a21f8299996491f4bec115b8b7243a3d2d2",
+    "chinese_characters": 10785
+  },
+  {
+    "id": "pythia-2026",
+    "pages": 13,
+    "bytes": 935293,
+    "sha256": "8dcc80d6cc178c8d684c5858c16fc04a25516762f12e631f98f6041892e657ed",
+    "chinese_characters": 14982
+  },
+  {
+    "id": "parrot-2024",
+    "pages": 15,
+    "bytes": 1125382,
+    "sha256": "acab3758bee3861c2391afee6115396c423d10509c36682848a63095f12ccdd2",
+    "chinese_characters": 13107
+  },
+  {
+    "id": "autellix-2025",
+    "pages": 16,
+    "bytes": 1189669,
+    "sha256": "ded20ab0d94d7354afb8b92dca7e2c8c4a3a5303d554ad1a9c85684e2af22feb",
+    "chinese_characters": 12989
+  },
+  {
+    "id": "fate-2026",
+    "pages": 22,
+    "bytes": 484692,
+    "sha256": "14173bb68ac895c3264908435c441dcb3fe4d85b008fdf7692f2e9db162c778b",
+    "chinese_characters": 17842
+  },
+  {
+    "id": "saga-2026",
+    "pages": 27,
+    "bytes": 660380,
+    "sha256": "6eccf88a9b2a3d4b8698943d59f8cbae70a1f47a101f023ff22ad127afb777ea",
+    "chinese_characters": 13626
+  },
+  {
+    "id": "teola-2024",
+    "pages": 12,
+    "bytes": 1009977,
+    "sha256": "064364e0a3f08bd9d062ac879ca098cb803351d7698b95dd415441f0473d8ae6",
+    "chinese_characters": 12418
+  },
+  {
+    "id": "kvflow-2025",
+    "pages": 10,
+    "bytes": 919254,
+    "sha256": "bac09d1192c26254c6c3bc9e70cedd9a1c8f8b08670acc6067704a231be46187",
+    "chinese_characters": 6994
+  },
+  {
+    "id": "continuum-2025",
+    "pages": 13,
+    "bytes": 897153,
+    "sha256": "5adf070739239a9bc019acfa30c7624d2e0faf65568baaefda974e52fd06b5bb",
+    "chinese_characters": 11498
+  },
+  {
+    "id": "thunderagent-2026",
+    "pages": 32,
+    "bytes": 1805525,
+    "sha256": "eb6070a649dd016049a1b5899ac9b287678e6390a954e695e2f52ef1a783aabd",
+    "chinese_characters": 14728
+  },
+  {
+    "id": "halo-2025",
+    "pages": 11,
+    "bytes": 1207149,
+    "sha256": "7f07bc1a904fae202656f732d8c3717ac0dc5d45f0baa988b58fc34ce6bb207f",
+    "chinese_characters": 13983
+  },
+  {
+    "id": "decima-2018",
+    "pages": 18,
+    "bytes": 6953753,
+    "sha256": "79c10bd0b7659f1c28c18c7eec872f16d0c8952569dc48beb230a329b9409c84",
+    "chinese_characters": 23903
+  },
+  {
+    "id": "graph-of-thoughts-2023",
+    "pages": 63,
+    "bytes": 2998746,
+    "sha256": "8198c2a587692c40cf3599b4c9786e89e334e109db4254cb6fe8cade81a4a642",
+    "chinese_characters": 25792
+  },
+  {
+    "id": "plan-over-graph-2025",
+    "pages": 17,
+    "bytes": 1158552,
+    "sha256": "777134df6bd0aa30300121d55114eebf9703c657bf0a3ae45447535a36639257",
+    "chinese_characters": 8801
+  },
+  {
+    "id": "llmcompiler-2023",
+    "pages": 19,
+    "bytes": 974852,
+    "sha256": "d3514dba7d7d88c8c70eff7486aff72421684172d258ad58a79fc2b0db4bfb2e",
+    "chinese_characters": 15133
+  },
+  {
+    "id": "s3-2023",
+    "pages": 12,
+    "bytes": 1143122,
+    "sha256": "9b1a082367aad8560a0e2303b72b70f5fee31f16cec29fd247115bf822962aa2",
+    "chinese_characters": 7225
+  },
+  {
+    "id": "response-length-2023",
+    "pages": 12,
+    "bytes": 402359,
+    "sha256": "3de84254dd8aaa49cc909170aa2217b98f6d6a78a9490fa2135c12cb1ca776eb",
+    "chinese_characters": 7142
+  },
+  {
+    "id": "trail-2024",
+    "pages": 18,
+    "bytes": 591956,
+    "sha256": "fb5df0a242de45fd20e5a2244c53e28f2ab99b214608c9c0438421b27cb0e2a5",
+    "chinese_characters": 9716
+  },
+  {
+    "id": "qiu-ssjf-2024",
+    "pages": 6,
+    "bytes": 512743,
+    "sha256": "0a4f6dabd29b448769b893325d40bc6e5846e830b3c169385a6954125d0551d4",
+    "chinese_characters": 5442
+  },
+  {
+    "id": "alise-2024",
+    "pages": 8,
+    "bytes": 1925692,
+    "sha256": "6f066dbde3a7b4f018a653aadfa2ad51ecdadf2eadc4b9b71924aec4ac1d5aee",
+    "chinese_characters": 7288
+  },
+  {
+    "id": "sagesched-2026",
+    "pages": 11,
+    "bytes": 716371,
+    "sha256": "130e4be2c70b9398d5957ef397212153af7cfaecddfc121c82cca465c16c2bde",
+    "chinese_characters": 9111
+  },
+  {
+    "id": "tie-2026",
+    "pages": 22,
+    "bytes": 1441875,
+    "sha256": "ca827674d973752881f62584b07d57f5f1fbd49e9a3babdff3cefaf43ac6f46f",
+    "chinese_characters": 11625
+  },
+  {
+    "id": "ueter-2021",
+    "pages": 8,
+    "bytes": 284861,
+    "sha256": "ea511ae2fa5eccf79b6f66005c1c133725caaee3d80da3d78cf64d99e70304a0",
+    "chinese_characters": 7825
+  },
+  {
+    "id": "gao-pdag-2025",
+    "pages": 6,
+    "bytes": 503127,
+    "sha256": "513fbbcef04a45d0f7648ccdb13e8001d256ea6fce192515b81d46adc49c22fb",
+    "chinese_characters": 6904
+  },
+  {
+    "id": "omori-probdag-2024",
+    "pages": 9,
+    "bytes": 466074,
+    "sha256": "b3a9dbfc41b461dc33f1f12e92c6e104010ea55e409d925b908a86835de748f4",
+    "chinese_characters": 8860
+  },
+  {
+    "id": "scully-harchol-2021",
+    "pages": 9,
+    "bytes": 296615,
+    "sha256": "cf123743b1ddaaa7bbe46cdd9a5a19a9d5bf1dc09cff3168afbac7be408292dc",
+    "chinese_characters": 10171
+  },
+  {
+    "id": "scully-multistage-2018",
+    "pages": 29,
+    "bytes": 478538,
+    "sha256": "42b1323f491b2959ab4affc18883fe1b43c5ffdc29731390e707100c6d5acd89",
+    "chinese_characters": 16750
+  },
+  {
+    "id": "scully-sequential-2021",
+    "pages": 139,
+    "bytes": 627883,
+    "sha256": "0f7c0aa21488466c8fd6ace986ede52b7efc05a68b9123112514c8bbf06b12f6",
+    "chinese_characters": 24875
+  },
+  {
+    "id": "malewicz-2007",
+    "pages": 19,
+    "bytes": 533811,
+    "sha256": "2c6fe082c8d1e9e33db2b82475e7e5577ded0fea9e70a3e18038fce7869bda20",
+    "chinese_characters": 12998
+  },
+  {
+    "id": "lin-rajaraman-2007",
+    "pages": 10,
+    "bytes": 326624,
+    "sha256": "12799380c5390cfe57dd32229f3d301e91bc0250283e4946548d76ef3712651e",
+    "chinese_characters": 11270
+  },
+  {
+    "id": "eposs-2024",
+    "pages": 19,
+    "bytes": 1000827,
+    "sha256": "9f4b0c61b5cc284b40ce39d1dab5beebe8902ec28533405c30a2cf6989096765",
+    "chinese_characters": 15239
+  },
+  {
+    "id": "dyna-2013",
+    "pages": 11,
+    "bytes": 1344072,
+    "sha256": "76ad590593a4460456d01f2fd00d535dbafb1e25f3b3f48485e49be5f98228fa",
+    "chinese_characters": 14390
+  },
+  {
+    "id": "prr",
+    "pages": 21,
+    "bytes": 4263934,
+    "sha256": "e0b8e226f34f890ddcce24c95758f2ed343ec301f70eb755120d22b22ffa2551",
+    "chinese_characters": 15240
+  }
+]

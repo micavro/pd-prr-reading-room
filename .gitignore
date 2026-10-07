@@ -1,0 +1,6 @@
+__pycache__/
+.env
+.sites-runtime/
+outputs/
+build/
+node_modules/
