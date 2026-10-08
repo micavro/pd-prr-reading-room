@@ -1,0 +1,4 @@
+# Preserve the exact bytes of paper and FAQ attachments across Windows/Linux.
+documents/** -text
+dist/pdfs/** -text
+dist/notes/** -text

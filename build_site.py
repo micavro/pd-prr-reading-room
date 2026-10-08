@@ -37,6 +37,23 @@ def rich_text(value):
     return ''.join(pieces)
 
 
+def copy_resource(source_path, output_path):
+    source = (ROOT / source_path).resolve()
+    target = (DIST / output_path).resolve()
+    if not source.is_relative_to(ROOT) or not target.is_relative_to(DIST.resolve()):
+        raise ValueError('Resource paths must stay inside the website project')
+    if 'manonly' in source.name.lower():
+        raise ValueError('Protected file is not a publication source')
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, target)
+    record = {'path': output_path, 'bytes': target.stat().st_size,
+              'sha256': hashlib.sha256(target.read_bytes()).hexdigest()}
+    if target.suffix == '.pdf':
+        with fitz.open(target) as pdf:
+            record['pages'] = len(pdf)
+    return record
+
+
 def shell(title, body, prefix='', description='P/D 系列与 PRR 的中文 PDF 和论文阅读问答。'):
     icon = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2311233f%22/%3E%3Cpath d=%22M8 7h7v18H8zm10 0h6v18h-6z%22 fill=%22%23f6c665%22/%3E%3C/svg%3E'
     return f'''<!doctype html>
@@ -68,8 +85,9 @@ def main():
         record = {'id': paper['id'], 'pages': paper['pages'], 'bytes': target.stat().st_size,
                   'sha256': hashlib.sha256(target.read_bytes()).hexdigest(), 'chinese_characters': chinese}
         if paper.get('original_source'):
-            original = (ROOT / paper['original_source']).resolve()
-            shutil.copy2(original, DIST / 'pdfs' / f"{paper['id']}-en.pdf")
+            record['original'] = copy_resource(paper['original_source'], f"pdfs/{paper['id']}-en.pdf")
+        if paper.get('supplements'):
+            record['supplements'] = [copy_resource(item['source'], item['path']) for item in paper['supplements']]
         manifest.append(record)
 
     nav = ''.join(f'<a href="#{g["id"]}">{esc(g["title"])}<span>{sum(p["group"] == g["id"] for p in DATA["papers"])} 篇</span></a>' for g in DATA['groups'])
@@ -82,10 +100,11 @@ def main():
         current_topic = None
         for paper in papers:
             pid = paper['id']
+            original = f'<a class="button" href="pdfs/{pid}-en.pdf" target="_blank" rel="noopener" aria-label="阅读 {esc(paper["short"])} 英文原文（新标签页）">英文原文 PDF</a>' if paper.get('original_source') else ''
             if paper.get('topic') and paper['topic'] != current_topic:
                 current_topic = paper['topic']
                 body += f'<h3 class="topic">{esc(current_topic)}</h3>'
-            body += f'''<article class="paper {group['id']}"><div><div class="meta"><span class="code">{esc(paper['short'])}</span><span>{esc(paper['venue'])}</span><span>中文 {paper['pages']} 页 · {paper['size']}</span></div><h3><a href="papers/{pid}.html">{esc(paper['zh_title'])}</a></h3><div class="en-title" lang="en">{esc(paper['title'])}</div><p>{esc(paper['summary'])}</p></div><div class="actions"><a class="button primary" href="pdfs/{pid}-zh.pdf" target="_blank" rel="noopener" aria-label="阅读 {esc(paper['short'])} 中文 PDF（新标签页）">阅读中文 PDF</a><a class="button" href="papers/{pid}.html">论文六问</a></div></article>'''
+            body += f'''<article class="paper {group['id']}"><div><div class="meta"><span class="code">{esc(paper['short'])}</span><span>{esc(paper['venue'])}</span><span>中文 {paper['pages']} 页 · {paper['size']}</span></div><h3><a href="papers/{pid}.html">{esc(paper['zh_title'])}</a></h3><div class="en-title" lang="en">{esc(paper['title'])}</div><p>{esc(paper['summary'])}</p></div><div class="actions"><a class="button primary" href="pdfs/{pid}-zh.pdf" target="_blank" rel="noopener" aria-label="阅读 {esc(paper['short'])} 中文 PDF（新标签页）">阅读中文 PDF</a>{original}<a class="button" href="papers/{pid}.html">Kimi 风格六问</a></div></article>'''
         body += '</div></section>'
     (DIST / 'index.html').write_text(shell('P/D 与 PRR', body), encoding='utf-8')
 
@@ -93,7 +112,8 @@ def main():
         pid = paper['id']
         group = next(g for g in DATA['groups'] if g['id'] == paper['group'])
         original = f'<a class="button" href="../pdfs/{pid}-en.pdf" target="_blank" rel="noopener">英文原文</a>' if paper.get('original_source') else ''
-        body = f'''<a class="back" href="../index.html#{paper['group']}">返回 {esc(group['title'])} 目录</a><article><header class="paper-header"><div class="meta"><span class="code">{esc(paper['short'])}</span><span>{esc(paper['venue'])}</span><span>中文 {paper['pages']} 页 · {paper['size']}</span></div><h1>{esc(paper['zh_title'])}</h1><div class="en-title" lang="en">{esc(paper['title'])}</div><p class="summary">{esc(paper['summary'])}</p><div class="actions"><a class="button primary" href="../pdfs/{pid}-zh.pdf" target="_blank" rel="noopener">阅读中文 PDF</a>{original}<a class="button" href="{esc(paper['source_url'])}" target="_blank" rel="noopener">论文来源</a></div><p class="fine">{esc(paper['translation_note'])}</p></header><div class="reading"><section aria-labelledby="questions"><h2 id="questions">论文六问</h2><p class="fine">{esc(paper['qa_provenance'])}</p><div class="qa-list">'''
+        supplements = ''.join(f'<a class="button" href="../{esc(item["path"])}" target="_blank" rel="noopener">{esc(item["label"])}</a>' for item in paper.get('supplements', []))
+        body = f'''<a class="back" href="../index.html#{paper['group']}">返回 {esc(group['title'])} 目录</a><article><header class="paper-header"><div class="meta"><span class="code">{esc(paper['short'])}</span><span>{esc(paper['venue'])}</span><span>中文 {paper['pages']} 页 · {paper['size']}</span></div><h1>{esc(paper['zh_title'])}</h1><div class="en-title" lang="en">{esc(paper['title'])}</div><p class="summary">{esc(paper['summary'])}</p><div class="actions"><a class="button primary" href="../pdfs/{pid}-zh.pdf" target="_blank" rel="noopener">阅读中文 PDF</a>{original}{supplements}<a class="button" href="{esc(paper['source_url'])}" target="_blank" rel="noopener">论文来源</a></div><p class="fine">{esc(paper['translation_note'])}</p></header><div class="reading"><section aria-labelledby="questions"><h2 id="questions">Kimi 风格六问</h2><p class="fine">{esc(paper['qa_provenance'])}</p><div class="qa-list">'''
         for i, qa in enumerate(paper['questions'], 1):
             opening = ' open' if i == 1 else ''
             body += f'<details id="q{i}"{opening}><summary>{i:02d} · {esc(qa["q"])}</summary><div class="answer">{rich_text(qa["a"])}<p class="ref">依据：{esc(qa["ref"])}</p></div></details>'

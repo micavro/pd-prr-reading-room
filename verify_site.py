@@ -52,13 +52,31 @@ def main():
             if url.fragment and target.suffix == '.html':
                 assert unquote(url.fragment) in parsed[target].ids, f'Missing anchor: {link}'
     records = json.loads((DIST / 'pdf-manifest.json').read_text())
+    assert {record['id'] for record in records} == set(ids), 'Manifest and library differ'
     for record in records:
         target = DIST / 'pdfs' / f"{record['id']}-zh.pdf"
         assert target.read_bytes().startswith(b'%PDF-')
         assert hashlib.sha256(target.read_bytes()).hexdigest() == record['sha256']
+        resources = record.get('supplements', []) + ([record['original']] if 'original' in record else [])
+        for resource in resources:
+            target = (DIST / resource['path']).resolve()
+            assert target.is_relative_to(DIST.resolve()), resource['path']
+            blob = target.read_bytes()
+            assert len(blob) == resource['bytes'], resource['path']
+            assert hashlib.sha256(blob).hexdigest() == resource['sha256'], resource['path']
+            if target.suffix == '.pdf':
+                assert blob.startswith(b'%PDF-'), resource['path']
     for paper in data['papers']:
         assert len(paper['questions']) == 6, paper['id']
         assert parsed[(DIST / 'papers' / f"{paper['id']}.html").resolve()].summary_count == 6
+        paper_links = parsed[(DIST / 'papers' / f"{paper['id']}.html").resolve()].links
+        record = next(record for record in records if record['id'] == paper['id'])
+        if paper.get('original_source'):
+            assert record['original']['path'] == f"pdfs/{paper['id']}-en.pdf"
+            assert '../' + record['original']['path'] in paper_links
+        for supplement in paper.get('supplements', []):
+            assert any(item['path'] == supplement['path'] for item in record.get('supplements', []))
+            assert '../' + supplement['path'] in paper_links
     print(f"PASS: {len(ids)} papers, {len(parsed)} HTML pages, six answers per paper, all local links and PDF hashes.")
 
 

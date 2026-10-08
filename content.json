@@ -1549,9 +1549,21 @@
       "source_url": "https://doi.org/10.1145/3603269.3604867",
       "pdf_source": "documents/prr-zh.pdf",
       "original_source": "documents/prr-en.pdf",
+      "supplements": [
+        {
+          "source": "documents/prr-qa.pdf",
+          "path": "pdfs/prr-qa.pdf",
+          "label": "问答 PDF"
+        },
+        {
+          "source": "documents/prr-qa.txt",
+          "path": "notes/prr-qa.txt",
+          "label": "问答文字版"
+        }
+      ],
       "summary": "端主机检测到连通性问题后改变 IPv6 FlowLabel，让已有连接重新选择网络路径，缩短等待路由修复的中断。",
       "translation_note": "21 页中文全文，依据 ACM 出版版重排；保留原图，附图中文字对照及原文页码定位。参考文献保留英文。",
-      "qa_provenance": "依据本地六问导读、中文全文及其校核报告整理；来源定位使用原文章节。",
+      "qa_provenance": "依据《翻译论文并撰写 Kimi 问答》对话中的六问导读、中文全文及校核报告展开整理。页面顶部的问答 PDF 与文字版保留该对话的导读原稿；下方是展开讲解版。引用定位使用英文原文章节。",
       "questions": [
         {
           "q": "本文试图解决什么问题？",

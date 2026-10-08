@@ -5,6 +5,8 @@
 - 阅读网址：https://micavro.github.io/pd-prr-reading-room/
 - GitHub 仓库：https://github.com/micavro/pd-prr-reading-room
 
+PRR 的 [论文与 Kimi 风格问答页面](https://micavro.github.io/pd-prr-reading-room/papers/prr.html) 集中提供 21 页中文全文、12 页 ACM 英文原文，以及《翻译论文并撰写 Kimi 问答》对话中的问答 PDF 和文字版。网页问答为展开讲解版，附件保留该对话导读原稿。首页也提供英文原文直达入口。
+
 ## 生成与验证
 
 在 `reading-site/` 中运行：
@@ -25,7 +27,7 @@ KaTeX 仅在生成阶段把公式转为原生 MathML；浏览器无需加载 Jav
 
 更新内容后重新生成并验证。网页和 PDF 使用稳定的英文文件名。PDF 使用普通 HTTPS 链接，交给 Safari 自带阅读器打开。网页问答与书签使用原生 HTML，不依赖第三方脚本、字体或 PDF 阅读服务。
 
-问答为助手依据论文和现有阅读资料整理，不是 Kimi 服务的实际输出；研究建议与作者结论分别标注。正式发布版会核对每份 PDF 页数、中文字符和 SHA-256。
+问答为助手依据论文和现有阅读资料整理，不是 Kimi 服务的实际输出；研究建议与作者结论分别标注。正式发布版会核对每份 PDF 页数、中文字符和 SHA-256。`content.json` 可为论文指定 `original_source` 与 `supplements`；生成器将原文和问答附件复制到相对路径，并在清单中记录文件大小、页数及校验值。验证脚本检查附件完整性和页面入口。
 
 ## GitHub Pages
 
